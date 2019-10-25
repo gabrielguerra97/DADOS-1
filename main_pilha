@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "pilha.h"
+
+int main(){
+	int a;
+	do{
+	contato *topo= criar_ponteiro();
+	Agenda *a;
+	
+	if(topo == NULL){
+		printf("Nao ha memoria suficiente!\n");
+		system("pause");
+		exit(0);
+		
+	} else {
+		topo->prox = NULL;
+	}
+	
+	int escolha,t;
+	
+	while(true){
+	system("cls");
+	printf("Bem Vindo ao MENU!\n\nEscolha o que deseja fazer:\n\n1)Empilhar\n2)Visualizar\n3)Desempilhar\n4)Sair\n");
+	scanf("%d",&escolha);
+	
+	switch (escolha){
+		
+		case 1:
+			{
+				topo=push(topo);
+				break;
+			}
+		case 2:
+			{
+				visualizar(topo);
+				break;
+			}	
+		case 3:
+			{
+				pop(topo);
+				break;
+			}		
+		case 4:
+			{
+				system("cls");
+				printf("\nAdeus meu Caro !\n\n");
+				exit(0);
+			}	
+		default:
+			{
+				printf("NAO EXISTE");
+			}	
+	}
+	
+	}
+	
+	}while(a != 4);
+}
