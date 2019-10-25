@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Agenda{
+	int codigo;
+	char nome[40];
+	int idade;
+	struct Agenda *prox;
+	struct Agenda *ant;
+};
+
+typedef struct Agenda contato;
+
+contato *criar_ponteiro(void){
+	contato *p= (contato*)malloc(sizeof(contato));
+	
+	if(!p){
+		printf("ERROR\n");
+	}else{
+		p->ant= NULL;
+		p->codigo= NULL;
+		p->idade= NULL;
+		p->nome[0]= NULL;
+		p->prox= NULL;
+	}
+};
+contato *push(contato *topo){
+	system("cls");
+	contato *novo= criar_ponteiro();
+	
+	printf("Digite o Codigo:\n");
+	scanf("%i",&novo->codigo);
+	printf("Digite o Nome:\n");
+	fflush(stdin);
+	gets(novo->nome);
+	printf("Digite a idade:\n");
+	scanf("%i",&novo->idade);
+	
+	topo->prox= novo;
+	novo->ant= topo;
+	topo= novo;
+	topo->prox= NULL;
+	
+	return topo;
+}
+void pop(contato *topo){
+	system("cls");
+	
+	topo->ant= topo;
+	free(topo->prox);
+	topo->prox= NULL;
+	
+	printf("Desempilhado o TOPO\n");
+	system("pause");
+}
+void visualizar(contato *topo){
+	system("cls");
+	contato *temp;
+	temp=topo;
+	
+	printf("Cadastrados\n\n");
+	
+	while(temp->ant != NULL){
+		printf("\nCodigo: %d\nNome: %s\nIdade: %d\n",temp->codigo,temp->nome,temp->idade);
+		temp= temp->ant;
+	}
+	
+	system("pause");
+}
