@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+int cont=0,i=0;
+struct Agenda{
+	int idade;
+	char nome[40],email[40],tel[20];
+	Agenda *prox;
+	Agenda *ant;
+};
+typedef struct Agenda contato;
+
+contato *criar_ponteiro(void){
+	contato *p=(contato*)malloc(sizeof(contato));
+	if(!p){
+		printf("error");
+	}else{
+		p->ant= NULL;
+		p->email[0]= NULL;
+		p->idade= NULL;
+		p->nome[0]= NULL;
+		p->prox= NULL;
+		p->tel[0]= NULL;
+	}
+};
+contato *push(contato *topo){
+	contato *novo= criar_ponteiro();
+	system("cls");
+	
+	printf("Qual o nome: \n");
+	fflush(stdin);
+	gets(novo->nome);
+	printf("Qual email:\n");
+	fflush(stdin);
+	gets(novo->email);
+	printf("Qual idade:\n");
+	scanf("%i",&novo->idade);
+	printf("Qual telefone:\n");
+	fflush(stdin);
+	gets(novo->tel);
+		
+	topo->prox= novo;
+	novo->ant= topo;
+	topo= novo;
+	topo->prox= NULL;
+			
+	return topo;
+}
+void visualizar(contato *topo){
+	system("cls");
+	contato *temp;
+	temp= topo;
+				
+	if(temp == NULL){
+		printf("Nao ha registro!\n\n");
+	} else {
+		printf("\nCadastrados:\n");
+					
+	while(temp->ant != NULL){	
+		printf("\nNome: %s\n",temp->nome);	
+		printf("Email: %s\n",temp->email);
+		printf("Idade: %i\n",temp->idade);
+		printf("Telefone: %s\n\n",temp->tel);
+		temp= temp->ant;					
+	}	
+		}
+	system("pause");
+}
+void pop(contato *topo){
+	system("cls");
+	
+	topo= topo->ant;
+	free(topo->prox);
+	topo->prox= NULL;	
+	
+	system("pause");
+}
